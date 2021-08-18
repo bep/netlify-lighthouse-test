@@ -1,6 +1,6 @@
 
 
-A test setup for Lighthouse tests of Netlify PR previews.
+A test setup for Lighthouse tests of Netlify PR previews....
 
 Some notes:
 

@@ -1,8 +1,9 @@
-name: Lighthouse CI for Netlify sites
+name: Lighthouse CI
 on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v2
       - name: Wait for Netlify
@@ -10,6 +11,7 @@ jobs:
         id: netlify
         with:
           site_name: 'boring-benz-edfaa1'
+      - run: npm i puppeteer
       - name: Lighthouse Desktop
         uses: treosh/lighthouse-ci-action@b8ccf8448921ddc6d53f5b8e218aa7c3f451b6b1
         id: lighthouse_audit_desktop
