@@ -46,7 +46,9 @@ module.exports = ({ manifest, core }) => {
 		});
 	};
 
+	console.log('\n\n\u001b[32mSummary Results Desktop:\u001b[0m');
 	console.table(byPresetConsole('desktop'));
+	console.log('\n\n\u001b[32mSummary Results Mobile:\u001b[0m');
 	console.table(byPresetConsole('mobile'));
 
 	const score = (res) => (res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴');
@@ -68,10 +70,10 @@ module.exports = ({ manifest, core }) => {
 	let markdownDesktop = markdownTable(byPreset('desktop')).join('\n');
 	let markdownMobile = markdownTable(byPreset('mobile')).join('\n');
 
-	let comment = `## Desktop
+	let comment = `### Lighthouse Desktop
 ${markdownDesktop}
 
-## Mobile
+### Lighthouse Mobile
 ${markdownMobile}
 
 `;
