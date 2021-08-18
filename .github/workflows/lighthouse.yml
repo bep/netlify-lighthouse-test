@@ -3,7 +3,6 @@ on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Wait for the Netlify Preview
@@ -20,7 +19,7 @@ jobs:
           temporaryPublicStorage: false
         env:
           BASE_URL:  ${{ steps.netlify.outputs.url }}
-          LIGHTHOUSE_PRESET: mobile
+          LIGHTHOUSE_PRESET: desktop
       - name: Lighthouse Mobile
         uses: treosh/lighthouse-ci-action@v8
         id: lighthouse_audit_mobile
