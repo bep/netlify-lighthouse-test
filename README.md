@@ -1,4 +1,4 @@
-
+.
 
 The workflow can be tested with [Ack](https://github.com/nektos/act) locally:
 
