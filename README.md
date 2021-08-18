@@ -6,3 +6,6 @@ Some notes:
 
 * It tests Mobile and Desktop by doing two runs with `additive: true` and the preset appended to every URL (see https://github.com/GoogleChrome/lighthouse-ci/issues/138). This is not pretty, but I think it's the only current way.
 * It reports the summary result as a PR comment (2 markdown tables).
+
+
+Note to self: This setup does not work for PRs from private forks. See https://github.com/bep/netlify-cypress-test for a workaround.
