@@ -46,9 +46,11 @@ module.exports = ({ manifest, core }) => {
 		});
 	};
 
-	console.log(byPresetConsole('desktop')[0]);
+	console.table(manifest);
 
-	console.log(byPresetConsole('mobile'));
+	console.table(byPresetConsole('desktop'));
+
+	console.table(byPresetConsole('mobile'));
 
 	const score = (res) => (res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴');
 

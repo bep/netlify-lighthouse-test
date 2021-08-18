@@ -25,9 +25,10 @@ module.exports = {
 			url: [ lhURL('/'), lhURL('/p1') ]
 		},
 		assert: {
+			// These are just example assertions. Set to error to fail the build.
 			assertions: {
 				'categories:performance': [ 'warn', { minScore: 0.5 } ],
-				'categories:accessibility': [ 'error', { minScore: 0.95 } ],
+				'categories:accessibility': [ 'warn', { minScore: 0.95 } ],
 				'categories:seo': [ 'warn', { minScore: 0.8 } ]
 			}
 		},
