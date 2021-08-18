@@ -1,0 +1,47 @@
+name: Lighthouse CI for Netlify sites
+on: pull_request
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Wait for the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@v1
+        id: netlify
+        with:
+          site_name: 'boring-benz-edfaa1'
+      - name: Lighthouse Desktop
+        uses: treosh/lighthouse-ci-action@v8
+        id: lighthouse_audit_desktop
+        with:
+          configPath: ./.github/workflows/lighthouserc.js
+          uploadArtifacts: ${{ !env.ACT }}
+          temporaryPublicStorage: false
+      - name: Lighthouse Mobile
+        uses: treosh/lighthouse-ci-action@v8
+        id: lighthouse_audit_mobile
+        with:
+          configPath: ./.github/workflows/lighthouserc.js
+          uploadArtifacts: ${{ !env.ACT }} 
+          temporaryPublicStorage: false
+        env:
+          BASE_URL:  ${{ steps.netlify.outputs.url }}
+          LIGHTOUSE_PRESET: mobile
+      - uses: actions/github-script@v4
+        id: format_lighthouse_score
+        with:
+          script: |
+            const script = require('./.github/workflows/lighthouse-summary-report.js');
+            const manifest = ${{ steps.lighthouse_audit_mobile.outputs.manifest }};
+
+            script({manifest, core})
+      - name: Add comment to PR
+        id: comment_to_pr
+        uses: marocchino/sticky-pull-request-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.issue.number }}
+          header: lighthouse
+          message: |
+            ${{ steps.format_lighthouse_score.outputs.comment }}
