@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Wait for Netlify
-        uses: jakepartusch/wait-for-netlify-action@efd2dfc155ba297f1feb2153db990831ae4997d6
+        uses: jakepartusch/wait-for-netlify-action@a7e506eff9e2e1396cf730428d279f2a528878d1
         id: netlify
         with:
           site_name: 'boring-benz-edfaa1'
